@@ -1,8 +1,7 @@
 FROM ubuntu:latest
 
-RUN apt install update \
-
-apt install iputils-ping
+RUN apt update && \
+    apt install -y iputils-ping
 
 
 CMD ["/bin/bash"]
