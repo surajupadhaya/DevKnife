@@ -54,7 +54,7 @@ pipeline {
                  Jenkins
                  """,
                  to: "surajupadhaya808@gmail.com",
-                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                 //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
         failure {
             emailext subject: "Jenkins Pipeline Failure: ${IMAGE_NAME}",
@@ -69,7 +69,7 @@ pipeline {
                  Jenkins
                  """,
                  to: "surajupadhaya808@gmail.com",
-                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                 //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
     }
     
