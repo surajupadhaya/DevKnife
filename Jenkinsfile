@@ -69,7 +69,8 @@ pipeline {
                  Best,
                  Jenkins
                  """,
-                 to: "surajupadhaya808@gmail.com"
+                 to: "surajupadhaya808@gmail.com",
+                 attachmentsPattern: 'Jenkinsfile'
                  
                  //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
