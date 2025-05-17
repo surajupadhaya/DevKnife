@@ -40,19 +40,8 @@ pipeline {
         }
     }
     post {
-        success 
-        {
-            emailext body: 'Jenkins Pipeline ',
-            subject: 'Jenkins pipeline status',
-            to: 'surajupadhaya808@gmail.com'
-        }
-        failure
-        {
-
-        }
-    }post {
-    success {
-        emailext subject: "Jenkins Pipeline Success: ${IMAGE_NAME}",
+        success {
+            emailext subject: "Jenkins Pipeline Success: ${IMAGE_NAME}",
                  body: """
                  Hello,
 
@@ -66,9 +55,9 @@ pipeline {
                  """,
                  to: "surajupadhaya808@gmail.com",
                  recipientProviders: [[$class: 'CulpritsRecipientProvider']]
-    }
-    failure {
-        emailext subject: "Jenkins Pipeline Failure: ${IMAGE_NAME}",
+        }
+        failure {
+            emailext subject: "Jenkins Pipeline Failure: ${IMAGE_NAME}",
                  body: """
                  Hello,
 
@@ -81,7 +70,7 @@ pipeline {
                  """,
                  to: "surajupadhaya808@gmail.com",
                  recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+        }
     }
-}
     
 }
