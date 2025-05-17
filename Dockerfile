@@ -1,7 +1,7 @@
-FROM ubuntu:latest
+FROM nginx:latest
 
-RUN apt update && \
-    apt install -y iputils-ping
+COPY nginx/index.html /usr/share/nginx/html/
 
-
-CMD ["/bin/bash"]
+RUN apt update && apt install -y iputils-ping && rm -rf /var/lib/apt/lists/*
+    
+CMD ["nginx", "-g", "daemon off;"]
