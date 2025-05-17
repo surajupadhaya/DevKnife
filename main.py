@@ -4,6 +4,10 @@ It allows users to delete, build, and launch containers via command-line argumen
 """
 import subprocess
 import sys
+import logging
+
+# Configure logging to write to a log file
+logging.basicConfig(filename="docker_script.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 def run_command(command):
     """Executes a shell command and returns output & exit code."""
@@ -23,53 +27,53 @@ def image_exists(image_name):
 def delete_container(container_name):
     """Deletes a Docker container if found."""
     if container_exists(container_name):
-        print("Container exists. Attempting to delete...")
+        logging.info("Container exists. Attempting to delete...")
         output,_ = run_command(f"docker rm -f {container_name}")
         if bool(output) == True:
-            print("Container deleted successfully.")
+            logging.info("Container deleted successfully.")
         else:
-            print(f"Error deleting container '{container_name}'.")
+            logging.info(f"Error deleting container '{container_name}'.")
             sys.exit(1)
     else:
-        print("No existing container found. Proceeding...")
+        logging.info("No existing container found. Proceeding...")
 
 def delete_image(image_name):
     """Deletes a Docker image if found."""
     if image_exists(image_name):
-        print("Image exists. Attempting to delete...")
+        logging.info("Image exists. Attempting to delete...")
         output,_ = run_command(f"docker rmi {image_name}")
         if bool(output) == True:
-            print("Image deleted successfully.")
+            logging.info("Image deleted successfully.")
         else:
-            print(f"Error deleting image '{image_name}'.")
+            logging.info(f"Error deleting image '{image_name}'.")
             sys.exit(1)
     else:
-        print("No existing image found. Proceeding...")
+        logging.info("No existing image found. Proceeding...")
 
 def build_image(image_name):
     """Builds a new Docker image."""
-    print("Building Docker image...")
+    logging.info("Building Docker image...")
     _, ret_code = run_command(f"docker build -t {image_name} .")
     if ret_code == 0:
-        print("Docker image built successfully.")
+        logging.info("Docker image built successfully.")
     else:
-        print("Error: Failed to build the image.")
+        logging.info("Error: Failed to build the image.")
         sys.exit(1)
 
 def launch_container(image_name, container_name):
     """Launches a Docker container using the built image."""
-    print("Launching Docker container...")
+    logging.info("Launching Docker container...")
     _, ret_code = run_command(f"docker run -itd -p 8888:80 --name {container_name} {image_name}")
     if ret_code == 0:
-        print("Container started successfully.")
+        logging.info("Container started successfully.")
     else:
-        print("Error: Failed to launch container.")
+        logging.info("Error: Failed to launch container.")
         sys.exit(1)
 
 if __name__ == "__main__":
     if len(sys.argv) < 3 or len(sys.argv) > 4:
-        print("Usage: python script.py <ACTION> <image-name> [container-name]")
-        print("Actions: 0 = Delete, Build & Launch | 1 = Build | 3 = Launch")
+        logging.info("Usage: python script.py <ACTION> <image-name> [container-name]")
+        logging.info("Actions: 0 = Delete, Build & Launch | 1 = Build | 3 = Launch")
         sys.exit(1)
 
     ACTION = sys.argv[1]
@@ -86,5 +90,5 @@ if __name__ == "__main__":
         case "3":  # Launch only
             launch_container(IMAGE_NAME, CONTAINER_NAME)
         case _:
-            print("Invalid option. Choose 0 (delete & rebuild), 1 (build), or 3 (launch).")
+            logging.info("Invalid option. Choose 0 (delete & rebuild), 1 (build), or 3 (launch).")
             sys.exit(1)
