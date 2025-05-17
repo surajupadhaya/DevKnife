@@ -54,7 +54,7 @@ pipeline {
                  Jenkins
                  """,
                  to: "surajupadhaya808@gmail.com",
-                 debug: true
+                 
                  //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
         failure {
@@ -70,7 +70,7 @@ pipeline {
                  Jenkins
                  """,
                  to: "surajupadhaya808@gmail.com",
-                 debug: true
+                 
                  //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
     }
