@@ -2,8 +2,8 @@ pipeline {
     agent { label 'suru' }
 
     parameters {
-        string(name: 'IMAGE_NAME', defaultValue: 'devknife', description: 'Name of the Docker image')
-        string(name: 'CONT_NAME', defaultValue: 'devknife_container', description: 'Name of the Docker container')
+        string(name: 'IMAGE_NAME', defaultValue: 'devknife:gui', description: 'Name of the Docker image')
+        string(name: 'CONT_NAME', defaultValue: 'devops_tool', description: 'Name of the Docker container')
     }
 
     stages {

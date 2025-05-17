@@ -1,30 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nginx Container Homepage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
+    <title>DevOps Command Center</title>
+    <script>
+        function runCommand() {
+            const command = document.getElementById("cmdInput").value;
+            fetch(`/execute?cmd=${encodeURIComponent(command)}`)
+                .then(response => response.text())
+                .then(data => document.getElementById("output").innerText = data);
         }
-        h1 {
-            color: #333;
-        }
-        p {
-            font-size: 18px;
-        }
-        .info {
-            font-weight: bold;
-            color: #007bff;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <h1>Welcome to My Nginx Server!</h1>
-    <p>This page is served from an Nginx container.</p>
+    <h2>Run DevOps Commands</h2>
+
+    <input type="text" id="cmdInput" placeholder="Enter command, e.g., ls -l" size="50">
+    <button onclick="runCommand()">Run Command</button>
+
+    <p>Output:</p>
+    <pre id="output"></pre>
 </body>
 </html>
