@@ -53,7 +53,7 @@ pipeline {
                  Best,
                  Jenkins
                  """,
-                 to: "surajupadhaya808@gmail.com",
+                 to: "surajupadhaya808@gmail.com"
                  
                  //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
@@ -69,7 +69,7 @@ pipeline {
                  Best,
                  Jenkins
                  """,
-                 to: "surajupadhaya808@gmail.com",
+                 to: "surajupadhaya808@gmail.com"
                  
                  //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
