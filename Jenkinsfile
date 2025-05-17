@@ -7,6 +7,14 @@ pipeline {
     }
 
     stages {
+        stage('check existing container'){
+            steps{
+                script{
+                    sh "python3 main.py 4 ${IMAGE_NAME} ${CONT_NAME}"
+                }
+            }
+
+        }
         stage('Check Existing Images') {
             steps {
                 script {
