@@ -13,7 +13,7 @@ def run_command(command):
 def delete_container(F_CONT_NAME):
 
    try:
-    run_command(f"docker rm  {F_CONT_NAME}")
+    run_command(f"docker rm -f {F_CONT_NAME}")
     print("Docker container deleted")
    except subprocess.CalledProcessError as e:
      print(f"Error deleting {e} ")
