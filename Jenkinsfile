@@ -53,7 +53,8 @@ pipeline {
                  Best,
                  Jenkins
                  """,
-                 to: "surajupadhaya808@gmail.com"
+                 to: "surajupadhaya808@gmail.com",
+                 attachmentsPattern: 'docker_script.log'
                  
                  //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
@@ -70,7 +71,7 @@ pipeline {
                  Jenkins
                  """,
                  to: "surajupadhaya808@gmail.com",
-                 attachmentsPattern: 'Jenkinsfile'
+                 attachmentsPattern: 'docker_script.log'
                  
                  //recipientProviders: [[$class: 'CulpritsRecipientProvider']]
         }
