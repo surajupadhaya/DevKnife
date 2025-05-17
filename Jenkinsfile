@@ -39,4 +39,49 @@ pipeline {
             }
         }
     }
+    post {
+        success 
+        {
+            emailext body: 'Jenkins Pipeline ',
+            subject: 'Jenkins pipeline status',
+            to: 'surajupadhaya808@gmail.com'
+        }
+        failure
+        {
+
+        }
+    }post {
+    success {
+        emailext subject: "Jenkins Pipeline Success: ${IMAGE_NAME}",
+                 body: """
+                 Hello,
+
+                 The Jenkins pipeline ran successfully.
+
+                 Docker Image: ${IMAGE_NAME}
+                 Container Name: ${CONT_NAME}
+
+                 Best,
+                 Jenkins
+                 """,
+                 to: "surajupadhaya808@gmail.com",
+                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+    }
+    failure {
+        emailext subject: "Jenkins Pipeline Failure: ${IMAGE_NAME}",
+                 body: """
+                 Hello,
+
+                 The Jenkins pipeline failed.
+
+                 Please check logs for details.
+
+                 Best,
+                 Jenkins
+                 """,
+                 to: "surajupadhaya808@gmail.com",
+                 recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+    }
+}
+    
 }
