@@ -10,7 +10,7 @@ pipeline {
         stage('check existing container'){
             steps{
                 script{
-                    sh "python3 main.py 4 ${IMAGE_NAME} ${CONT_NAME}"
+                    sh "python3 main.py 0 ${IMAGE_NAME} ${CONT_NAME}"
                 }
             }
 
@@ -18,7 +18,7 @@ pipeline {
         stage('Check Existing Images') {
             steps {
                 script {
-                    sh "python3 main.py 0 ${IMAGE_NAME}"
+                    sh "python3 main.py 1 ${IMAGE_NAME}"
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    sh "python3 main.py 1 ${IMAGE_NAME}"
+                    sh "python3 main.py 2 ${IMAGE_NAME}"
                 }
             }
         }
