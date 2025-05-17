@@ -25,7 +25,7 @@ def delete_container(container_name):
     if container_exists(container_name):
         print("Container exists. Attempting to delete...")
         output,_ = run_command(f"docker rm -f {container_name}")
-        if output == '':
+        if bool(output) == True:
             print("Container deleted successfully.")
         else:
             print(f"Error deleting container '{container_name}'.")
@@ -38,7 +38,7 @@ def delete_image(image_name):
     if image_exists(image_name):
         print("Image exists. Attempting to delete...")
         output,_ = run_command(f"docker rmi {image_name}")
-        if ret_code == 0:
+        if bool(output) == True:
             print("Image deleted successfully.")
         else:
             print(f"Error deleting image '{image_name}'.")
