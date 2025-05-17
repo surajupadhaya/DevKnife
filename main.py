@@ -10,6 +10,14 @@ def run_command(command):
     result = subprocess.check_output(command, shell=True, text=True)
     return result.strip()
 
+def delete_container(F_CONT_NAME):
+
+   try:
+    run_command(f"docker rm  {F_CONT_NAME}")
+    print("Docker container deleted")
+   except subprocess.CalledProcessError as e:
+     print(f"Error deleting {e} ")
+   
 def delete_image(F_IMG_NAME):
     """Deletes the existing Docker image if found."""
     print("Checking for existing Docker image...")
@@ -67,6 +75,8 @@ if __name__ == "__main__":
     match ACTION:  # Python 3.10+ switch-case equivalent
         case "0":
             delete_image(IMG_NAME)
+        case "4":
+            delete_container(CONT_NAME)    
         case "1":
             build_image(IMG_NAME)
         case "3":
